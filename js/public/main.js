@@ -9,12 +9,23 @@ async function fetchBirds() {
       throw new Error(`Request failed with status ${response.status}`);
     }
     const birds = await response.json();
-    renderBirds(Array.isArray(birds) ? birds : []);
+    const iterableBirds = cleanBirds(birds);
+
+    renderBirds(Array.isArray(iterableBirds) ? iterableBirds : []);
     statusElement.textContent = `Loaded ${Array.isArray(birds) ? birds.length : 0} birds`;
   } catch (error) {
     statusElement.textContent = "Error loading birds";
     listElement.innerHTML = `<li>${error.message}</li>`;
   }
+}
+
+function cleanBirds(birds) {
+  return birds.map((bird) => {
+   return {
+      ...bird,
+      imagen_url: bird.imagen_url.replace(/\/\//g, '/')
+    }
+  });
 }
 
 function renderBirds(birds) {
@@ -37,6 +48,7 @@ function renderBirds(birds) {
     details.append(commonName, scientificName, description);
     if (image.src) {
       item.append(image);
+      console.log(item.append(image))
     }
     item.append(details);
     listElement.append(item);
