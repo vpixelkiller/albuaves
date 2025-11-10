@@ -1,4 +1,4 @@
-INSERT INTO aves (id_ave, nombre_comun, nombre_cientifico, descripcion, imagen_url)
+INSERT INTO birds (bird_id, common_name, scientific_name, description, img_url)
 VALUES
   (1, 'Martinete', 'Nycticorax nycticorax', 'Ave nocturna de plumaje blanco y negro, común en humedales.', './imgs/aves//martinete.jpg'),
   (2, 'Garza real', 'Ardea cinerea', 'Grande y elegante, con plumaje gris y pico largo.', './imgs/aves//garza_real.jpg'),
@@ -11,7 +11,7 @@ VALUES
   (9, 'Pato colorado', 'Netta rufina', 'Macho con cabeza roja y pico rojo brillante.', './imgs/aves//pato_colorado.jpg'),
   (10, 'Aguilucho lagunero', 'Circus aeruginosus', 'Rapaz de alas largas, habita en zonas húmedas.', './imgs/aves//aguilucho_lagunero.jpg');
 
-INSERT INTO avistamientos (id_avistamiento, id_ave, fecha, hora, ubicacion, observaciones)
+INSERT INTO sighting (sighting_id, bird_id, date, time, location, comments)
 VALUES
   (1, 3, '2025-10-15', '09:30:00', 'Laguna de la Albufera', 'Grupo de 12 flamencos alimentándose.'),
   (2, 1, '2025-10-16', '18:00:00', 'Ribera del lago', 'Martinete posado en un junco al atardecer.'),

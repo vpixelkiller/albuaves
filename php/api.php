@@ -9,17 +9,17 @@ $db = new SQLite3('../db/albuaves.db');
 
 switch ($method) {
     case 'GET':
-        if (isset($_GET['id'])) {
+        if (isset($_GET['bird_id'])) {
             // Obtener un ave por ID
-            $id = $_GET['id'];
-            $stmt = $db->prepare("SELECT * FROM aves WHERE id = :id");
+            $id = $_GET['bird_id'];
+            $stmt = $db->prepare("SELECT * FROM birds WHERE bird_id = :bird_id");
             $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
             $result = $stmt->execute();
             $ave = $result->fetchArray(SQLITE3_ASSOC);
             echo json_encode($ave);
         } else {
             // Obtener todas las aves
-            $result = $db->query("SELECT * FROM aves");
+            $result = $db->query("SELECT * FROM birds");
             $aves = [];
             while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
                 $aves[] = $row;
