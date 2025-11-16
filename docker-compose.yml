@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    ports:
+      - "9191:9191"
+    volumes:
+      - ./db:/app/db
+      - ./php:/app/php
+      - ./imgs:/app/imgs
+
