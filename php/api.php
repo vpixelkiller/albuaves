@@ -29,19 +29,18 @@ switch ($method) {
         }
         break;
 
-    /*
     case 'POST':
-        // Insertar un nuevo ave
         $data = json_decode(file_get_contents('php://input'), true);
-        $stmt = $db->prepare("INSERT INTO aves (nombre, especie, ubicacion, fecha_avistamiento) VALUES (:nombre, :especie, :ubicacion, :fecha)");
-        $stmt->bindValue(':nombre', $data['nombre'], SQLITE3_TEXT);
-        $stmt->bindValue(':especie', $data['especie'], SQLITE3_TEXT);
-        $stmt->bindValue(':ubicacion', $data['ubicacion'], SQLITE3_TEXT);
-        $stmt->bindValue(':fecha', $data['fecha_avistamiento'], SQLITE3_TEXT);
+        $stmt = $db->prepare("INSERT INTO birds (common_name, scientific_name, description, img_url) VALUES (:common_name, :scientific_name, :description, :img_url)");
+        $stmt->bindValue(':common_name', $data['common_name'], SQLITE3_TEXT);
+        $stmt->bindValue(':scientific_name', $data['scientific_name'], SQLITE3_TEXT);
+        $stmt->bindValue(':description', $data['description'], SQLITE3_TEXT);
+        $stmt->bindValue(':img_url', $data['img_url'], SQLITE3_TEXT);
         $stmt->execute();
-        echo json_encode(["message" => "Ave creada correctamente"]);
+        echo json_encode(["message" => "Bird created successfully"]);
         break;
 
+    /*
     case 'PUT':
         // Actualizar un ave
         $data = json_decode(file_get_contents('php://input'), true);

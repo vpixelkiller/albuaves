@@ -14,8 +14,37 @@
   </head>
   <body>
     <h1>Albuaves Birds</h1>
+    <button id="add-bird-button">Add bird</button>
     <div id="status">Loading birds...</div>
     <ul id="birds"></ul>
+    <div id="modal-backdrop" class="modal-backdrop hidden">
+      <div class="modal">
+        <h2>Add bird</h2>
+        <form id="add-bird-form">
+          <label>
+            Common name
+            <input id="common-name-input" name="common_name" type="text" required />
+          </label>
+          <label>
+            Scientific name
+            <input id="scientific-name-input" name="scientific_name" type="text" required />
+          </label>
+          <label>
+            Description
+            <textarea id="description-input" name="description" rows="3"></textarea>
+          </label>
+          <label>
+            Image URL
+            <input id="image-url-input" name="img_url" type="url" required />
+          </label>
+          <div id="modal-error" class="modal-error"></div>
+          <div class="modal-actions">
+            <button type="button" id="cancel-button">Cancel</button>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
