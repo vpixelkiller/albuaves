@@ -1,8 +1,10 @@
 ul {
   list-style: none;
   padding: 0;
-  display: grid;
-  gap: 1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 li {
@@ -13,6 +15,7 @@ li {
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 img {

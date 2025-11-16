@@ -1,8 +1,14 @@
 body {
   font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin: 2rem;
+  margin: 0;
   background-color: #f4f6f8;
   color: #1f2933;
+}
+
+#app {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding-inline: 1rem;
 }
 
 h1 {
