@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:9191/api.php";
+const API_URL = "http://127.0.0.1:9191/php/api.php";
 const statusElement = document.getElementById("status");
 const listElement = document.getElementById("birds");
 
@@ -20,12 +20,13 @@ async function fetchBirds() {
 }
 
 function cleanBirds(birds) {
-  return birds.map((bird) => {
-   return {
-      ...bird,
-      imagen_url: resolveImageUrl(bird.imagen_url)
-    }
-  });
+  if (!Array.isArray(birds)) {
+    return [];
+  }
+  return birds.map((bird) => ({
+    ...bird,
+    img_url: resolveImageUrl(bird.img_url),
+  }));
 }
 
 function renderBirds(birds) {
@@ -33,18 +34,18 @@ function renderBirds(birds) {
   birds.forEach((bird) => {
     const item = document.createElement("li");
     const image = document.createElement("img");
-    image.src = bird.imagen_url || "";
-    image.alt = bird.nombre_comun || "Bird";
+    image.src = bird.img_url || "";
+    image.alt = bird.common_name || "Bird";
     const details = document.createElement("div");
     details.className = "details";
     const commonName = document.createElement("div");
     commonName.className = "common-name";
-    commonName.textContent = bird.nombre_comun || "Unknown bird";
+    commonName.textContent = bird.common_name || "Unknown bird";
     const scientificName = document.createElement("div");
     scientificName.className = "scientific-name";
-    scientificName.textContent = bird.nombre_cientifico || "";
+    scientificName.textContent = bird.scientific_name || "";
     const description = document.createElement("div");
-    description.textContent = bird.descripcion || "";
+    description.textContent = bird.description || "";
     details.append(commonName, scientificName, description);
     if (image.src) {
       item.append(image);
@@ -54,13 +55,15 @@ function renderBirds(birds) {
   });
 }
 
-function resolveImageUrl (birdImage) {
-  const kko = birdImage.replace(/\/\//g, '/')
-
-  try { 
-    return new URL(kko, API_URL).href;
-  } catch { 
-    return '';
+function resolveImageUrl(birdImage) {
+  if (!birdImage || typeof birdImage !== "string") {
+    return "";
+  }
+  const normalised = birdImage.replace(/\/\//g, "/");
+  try {
+    return new URL(normalised, API_URL).href;
+  } catch {
+    return "";
   }
 }
 

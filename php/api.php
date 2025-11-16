@@ -5,7 +5,8 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 $method = $_SERVER['REQUEST_METHOD'];
-$db = new SQLite3('../db/albuaves.db');
+$dbPath = __DIR__ . '/../db/albuaves.db';
+$db = new SQLite3($dbPath);
 
 switch ($method) {
     case 'GET':

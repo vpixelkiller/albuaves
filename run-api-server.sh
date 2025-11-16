@@ -3,7 +3,7 @@
 IPAPI="127.0.0.1"
 PORTAPI="9191"
 
-cd php/
-php -S ${IPAPI}:${PORTAPI} 
+cd "$(dirname "$0")"
+php -S ${IPAPI}:${PORTAPI} -t .
 
 exit 0
